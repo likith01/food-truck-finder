@@ -19,7 +19,7 @@ export class FoodTruckService {
   private readonly http = inject(HttpClient);
 
   private readonly apiUrl =
-    'http://localhost:8000/api/v1/food-trucks';
+    'https://food-truck-finder-txb7.onrender.com/api/v1/food-trucks';
 
   getFoodTrucks(
     search?: string,

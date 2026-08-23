@@ -1,0 +1,26 @@
+.list-header {
+  padding: 18px;
+
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.list-header h2 {
+  margin: 0;
+
+  font-size: 16px;
+  color: #0f172a;
+}
+
+.list-header span {
+  display: block;
+
+  margin-top: 4px;
+
+  font-size: 12px;
+  color: #64748b;
+}
+
+.truck-items {
+  display: flex;
+  flex-direction: column;
+}

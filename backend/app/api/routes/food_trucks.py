@@ -1,6 +1,6 @@
 import logging
 
-from fastapi import APIRouter, Depends, HTTPException, Query, status
+from fastapi import APIRouter, Depends, HTTPException
 
 from app.api.dependencies import get_food_truck_service
 from app.schemas.food_truck import FoodTruck
@@ -22,52 +22,47 @@ router = APIRouter(
     response_model=list[FoodTruck],
 )
 async def get_food_trucks(
-    latitude: float | None = Query(
-        default=None,
-        ge=-90,
-        le=90,
-    ),
-    longitude: float | None = Query(
-        default=None,
-        ge=-180,
-        le=180,
-    ),
-    radius_km: float | None = Query(
-        default=None,
-        gt=0,
-        le=100,
-    ),
-    food_type: str | None = Query(
-        default=None,
-        min_length=1,
-        max_length=100,
-    ),
+    query: FoodTruckQuery = Depends(),
     service: FoodTruckService = Depends(
-        get_food_truck_service,
+        get_food_truck_service
     ),
 ) -> list[FoodTruck]:
 
-    query = FoodTruckQuery(
-        latitude=latitude,
-        longitude=longitude,
-        radius_km=radius_km,
-        food_type=food_type,
-    )
-
     logger.info(
-        "Received food truck search request: %s",
-        query.model_dump(exclude_none=True),
+        "Food truck API request received | "
+        "search=%s latitude=%s longitude=%s "
+        "radius=%s limit=%d offset=%d",
+        query.search,
+        query.latitude,
+        query.longitude,
+        query.radius,
+        query.limit,
+        query.offset,
     )
 
     try:
-        return await service.get_food_trucks(query)
 
-    except Exception:
+        return await service.get_food_trucks(
+            query
+        )
+
+    except Exception as exc:
+
         logger.exception(
-            "Failed to retrieve food trucks",
+            "Food truck API request failed"
         )
 
         raise HTTPException(
-            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
-            detail="Food truck service is temporarily unavailable",
-        )
+            status_code=502,
+            detail=(
+                "Unable to retrieve food truck data "
+                "from the external service."
+            ),
+        ) from exc
+        
+# search = chai
+# latitude = 37.7879
+# longitude = -122.4005
+# radius = 5
+# limit = 50
+# offset = 0

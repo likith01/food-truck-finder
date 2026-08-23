@@ -1,5 +1,15 @@
 # Food Truck Finder
 
+## Author
+
+**Likith S**
+
+- 📧 Email: [likiths2501@gmail.com](mailto:likiths2501@gmail.com)
+- 📱 Phone: +91 97417 52107
+- 💻 GitHub: [github.com/likith01](https://github.com/likith01)
+- 💼 LinkedIn: [linkedin.com/in/likith-s-452315226](https://www.linkedin.com/in/likith-s-452315226/)
+
+
 A full-stack Food Truck Finder application that allows users to search food trucks, discover nearby trucks using their current location, filter results by distance, and view trucks interactively on a map.
 
 ## Features
@@ -671,15 +681,6 @@ DataSF API
 The architecture keeps UI logic, business logic, and external API communication separated, making the application easier to test, maintain, and extend.
 
 ---
-
-## Author
-
-**Likith S**
-
-- 📧 Email: [likiths2501@gmail.com](mailto:likiths2501@gmail.com)
-- 📱 Phone: +91 97417 52107
-- 💻 GitHub: [github.com/likith01](https://github.com/likith01)
-- 💼 LinkedIn: [linkedin.com/in/likith-s-452315226](https://www.linkedin.com/in/likith-s-452315226/)
 
 ## Acknowledgements
 

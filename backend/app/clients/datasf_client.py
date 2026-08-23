@@ -1,6 +1,6 @@
 import logging
 from typing import Any
-
+from app.core.config import settings
 import httpx
 
 
@@ -10,8 +10,9 @@ logger = logging.getLogger(__name__)
 class DataSFClient:
 
     BASE_URL = (
-        "https://data.sfgov.org/resource/rqzj-sfat.json"
+        settings.datasf_api_url
     )
+    logger.info(f"API URL Used: {BASE_URL}")
 
     def __init__(
         self,

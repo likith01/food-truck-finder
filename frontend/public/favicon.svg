@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#ffffff"/>
+
+  <!-- Location pin -->
+  <path
+    d="M32 7C20.4 7 11 16.4 11 28c0 15.2 17.7 27.1 20.1 28.6.5.3 1.3.3 1.8 0C35.3 55.1 53 43.2 53 28 53 16.4 43.6 7 32 7Z"
+    fill="#ef4444"
+  />
+
+  <!-- Food truck -->
+  <path
+    d="M17 24h27v16H17z"
+    fill="#ffffff"
+  />
+
+  <!-- Truck roof -->
+  <path
+    d="M17 24h27l5 7H17z"
+    fill="#f59e0b"
+  />
+
+  <!-- Window -->
+  <path
+    d="M34 27h7v5h-7z"
+    fill="#60a5fa"
+  />
+
+  <!-- Serving window -->
+  <path
+    d="M20 28h10v7H20z"
+    fill="#374151"
+  />
+
+  <!-- Wheels -->
+  <circle cx="23" cy="42" r="4" fill="#1f2937"/>
+  <circle cx="43" cy="42" r="4" fill="#1f2937"/>
+
+  <!-- Wheel centers -->
+  <circle cx="23" cy="42" r="1.5" fill="#ffffff"/>
+  <circle cx="43" cy="42" r="1.5" fill="#ffffff"/>
+
+  <!-- Food/steam -->
+  <path
+    d="M24 20c-2-3 2-4 0-7M30 20c-2-3 2-4 0-7"
+    fill="none"
+    stroke="#ffffff"
+    stroke-width="2"
+    stroke-linecap="round"
+  />
+</svg>

@@ -1,25 +1,47 @@
+/* =========================================================
+   PAGE
+   ========================================================= */
+
 .food-truck-page {
-  min-height: 100vh;
-  background: #f8fafc;
+  height: 100vh;
+  width: 100%;
+
   display: flex;
   flex-direction: column;
+
+  overflow: hidden;
+
+  background: #f8fafc;
 }
 
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
 .page-header {
-  height: 72px;
-  background: #ffffff;
-  border-bottom: 1px solid #e2e8f0;
+  flex-shrink: 0;
+
+  height: 76px;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  padding: 0 32px;
+  padding: 0 28px;
+
+  background: #ffffff;
+
+  border: 1px solid #e2e8f0;
 }
+
+
+/* Brand */
 
 .brand {
   display: flex;
   align-items: center;
+
   gap: 12px;
 }
 
@@ -31,141 +53,290 @@
   align-items: center;
   justify-content: center;
 
+  border-radius: 8px;
+
   background: #f1f5f9;
-  border-radius: 12px;
 
   font-size: 22px;
 }
 
 .brand h1 {
   margin: 0;
+
   font-size: 20px;
   font-weight: 700;
+
   color: #0f172a;
 }
 
 .brand p {
   margin: 3px 0 0;
 
-  font-size: 13px;
+  font-size: 12px;
+
   color: #64748b;
 }
 
+
+/* Location button */
+
 .location-button {
-  border: 1px solid #cbd5e1;
-  background: #ffffff;
-
-  padding: 10px 16px;
-
-  border-radius: 8px;
-
-  font-size: 14px;
-  font-weight: 600;
-
-  cursor: pointer;
+  height: 40px;
 
   display: flex;
   align-items: center;
   gap: 8px;
+
+  padding: 0 16px;
+
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: #0f172a;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
 }
 
 .location-button:hover {
   background: #f8fafc;
 }
 
+.location-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
 .page-content {
   flex: 1;
+
+  min-height: 0;
 
   display: flex;
   flex-direction: column;
 
-  padding: 24px 32px;
-  gap: 20px;
-}
-
-.search-section {
-  background: #ffffff;
-
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-
-  padding: 18px;
-}
-
-.results-section {
-  flex: 1;
-
-  min-height: 600px;
-
-  display: grid;
-  grid-template-columns: 380px 1fr;
-
-  gap: 20px;
-}
-
-.truck-list {
-  background: #ffffff;
-
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-
-  overflow: auto;
-}
-
-.map-container {
-  background: #ffffff;
-
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
+  padding: 20px 28px;
 
   overflow: hidden;
 }
 
-.map-placeholder {
-  height: 100%;
 
+/* =========================================================
+   SEARCH SECTION
+   ========================================================= */
+
+.search-section {
+  flex-shrink: 0;
+
+  padding: 16px;
+
+  margin-bottom: 16px;
+
+  background: #ffffff;
+
+  border: 1px solid #dbe3ec;
+
+  border-radius: 10px;
+}
+
+
+/* =========================================================
+   RADIUS
+   ========================================================= */
+
+.radius-control {
   display: flex;
-  flex-direction: column;
-
   align-items: center;
-  justify-content: center;
 
-  color: #64748b;
+  gap: 10px;
+
+  margin-top: 14px;
+  padding-top: 12px;
+
+  border-top: 1px solid #f1f5f9;
 }
 
-.map-icon {
-  font-size: 40px;
-  margin-bottom: 12px;
+.radius-control label {
+  font-size: 13px;
+  font-weight: 600;
+
+  color: #475569;
 }
 
-.map-placeholder h2 {
-  margin: 0 0 6px;
+.radius-control select {
+  height: 36px;
+
+  min-width: 95px;
+
+  padding: 0 12px;
+
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+
+  background: #ffffff;
 
   color: #334155;
+
+  font-size: 13px;
+
+  cursor: pointer;
 }
 
-.map-placeholder p {
-  margin: 0;
+.radius-control select:focus {
+  outline: none;
+
+  border-color: #64748b;
+
+  box-shadow: 0 0 0 3px rgb(100 116 139 / 10%);
 }
+
+
+/* =========================================================
+   RESULTS AREA
+   ========================================================= */
+
+.results-section {
+  flex: 1;
+
+  min-height: 0;
+
+  display: grid;
+
+  grid-template-columns: 320px minmax(0, 1fr);
+
+  gap: 16px;
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   LEFT SIDEBAR
+   ========================================================= */
+
+.truck-list {
+  min-height: 0;
+
+  height: 100%;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  background: #ffffff;
+
+  border: 1px solid #dbe3ec;
+
+  border-radius: 10px;
+
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+
+/* Chrome / Edge scrollbar */
+
+.truck-list::-webkit-scrollbar {
+  width: 7px;
+}
+
+.truck-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.truck-list::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+
+  border-radius: 10px;
+}
+
+.truck-list::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+
+/* =========================================================
+   MAP
+   ========================================================= */
+
+.map-container {
+  min-width: 0;
+  min-height: 0;
+
+  height: 100%;
+
+  overflow: hidden;
+
+  background: #ffffff;
+
+  border: 1px solid #dbe3ec;
+
+  border-radius: 10px;
+}
+
+
+/*
+   IMPORTANT:
+   Angular map component must fill the container.
+*/
+
+.map-container app-food-truck-map {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
 
 @media (max-width: 900px) {
-  .page-header {
-    padding: 0 16px;
+
+  .results-section {
+    grid-template-columns: 280px minmax(0, 1fr);
+  }
+
+}
+
+
+@media (max-width: 700px) {
+
+  .food-truck-page {
+    height: auto;
+    min-height: 100vh;
+
+    overflow: visible;
   }
 
   .page-content {
-    padding: 16px;
+    overflow: visible;
   }
 
   .results-section {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+
+    overflow: visible;
   }
 
   .truck-list {
-    min-height: 400px;
+    height: 400px;
+    flex-shrink: 0;
   }
 
   .map-container {
-    min-height: 500px;
+    height: 500px;
+    flex-shrink: 0;
   }
+
 }

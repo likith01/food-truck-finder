@@ -1,9 +1,35 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  output,
+  signal,
+} from '@angular/core';
 
 @Component({
-  imports: [],
   selector: 'app-food-truck-search',
-  styleUrl: './food-truck-search.css',
   templateUrl: './food-truck-search.html',
+  styleUrl: './food-truck-search.css',
 })
-export class FoodTruckSearch {}
+export class FoodTruckSearch {
+
+  readonly searchValue = signal('');
+
+  readonly searchRequested = output<string>();
+
+  onSearchChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+
+    this.searchValue.set(input.value);
+  }
+
+  onSearch(): void {
+    const search = this.searchValue().trim();
+
+    this.searchRequested.emit(search);
+  }
+
+  clearSearch(): void {
+    this.searchValue.set('');
+
+    this.searchRequested.emit('');
+  }
+}

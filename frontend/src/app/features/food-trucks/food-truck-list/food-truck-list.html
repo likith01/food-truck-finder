@@ -1,10 +1,99 @@
 <div class="list-header">
+
   <div>
-    <h2>Nearby Food Trucks</h2>
-    <span>1 truck found</span>
+
+    <h2>
+      Nearby Food Trucks
+    </h2>
+
+    @if (isLoading()) {
+
+      <span>
+        Loading food trucks...
+      </span>
+
+    } @else if (errorMessage()) {
+
+      <span>
+        {{ errorMessage() }}
+      </span>
+
+    } @else {
+
+      <span>
+        {{ foodTrucks().length }} trucks found
+      </span>
+
+    }
+
   </div>
+
 </div>
 
-<div class="truck-items">
-  <app-food-truck-card></app-food-truck-card>
-</div>
+
+@if (isLoading()) {
+
+  <div class="list-message">
+    Loading food trucks...
+  </div>
+
+} @else if (errorMessage() && foodTrucks().length === 0) {
+
+  <div class="list-message error">
+    {{ errorMessage() }}
+  </div>
+
+} @else if (foodTrucks().length === 0) {
+
+  <div class="list-message">
+    No food trucks found.
+  </div>
+
+} @else {
+
+  <div class="truck-items">
+
+    @for (
+      truck of foodTrucks();
+      track truck.id
+    ) {
+
+      <app-food-truck-card
+        [foodTruck]="truck"
+        (truckSelected)="onTruckSelected($event)">
+      </app-food-truck-card>
+
+    }
+
+  </div>
+
+
+  @if (hasMore()) {
+
+    <div class="load-more-container">
+
+      <button
+        type="button"
+        class="load-more-button"
+        [disabled]="isLoadingMore()"
+        (click)="onLoadMore()">
+
+        @if (isLoadingMore()) {
+          Loading...
+        } @else {
+          Load More
+        }
+
+      </button>
+
+    </div>
+
+  } @else {
+
+    <div class="end-message">
+      No more food trucks to load.
+    </div>
+
+  }
+
+}

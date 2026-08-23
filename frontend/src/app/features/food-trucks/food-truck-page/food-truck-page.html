@@ -1,40 +1,108 @@
 <div class="food-truck-page">
 
+  <!-- HEADER -->
   <header class="page-header">
+
     <div class="brand">
-      <div class="brand-icon">🍴</div>
+
+      <div class="brand-icon">
+        🍴
+      </div>
 
       <div>
         <h1>Food Truck Finder</h1>
         <p>Discover food trucks near you</p>
       </div>
+
     </div>
 
-    <button class="location-button">
+    <button
+      type="button"
+      class="location-button"
+      (click)="useMyLocation()"
+      [disabled]="locationLoading()"
+    >
+
       <span>📍</span>
-      Use My Location
+
+      @if (locationLoading()) {
+        <span>Finding Location...</span>
+      } @else {
+        <span>Use My Location</span>
+      }
+
     </button>
+
   </header>
 
+
+  <!-- MAIN -->
   <main class="page-content">
 
+    <!-- SEARCH -->
     <section class="search-section">
-      <app-food-truck-search></app-food-truck-search>
+
+      <app-food-truck-search
+        (searchRequested)="onSearch($event)"
+      >
+      </app-food-truck-search>
+
+
+      <div class="radius-control">
+
+        <label for="radius">
+          Distance
+        </label>
+
+        <select
+          id="radius"
+          [value]="searchRadius()"
+          (change)="onRadiusChange($event)"
+        >
+
+          <option value="1">1 km</option>
+          <option value="2">2 km</option>
+          <option value="5">5 km</option>
+          <option value="10">10 km</option>
+          <option value="25">25 km</option>
+
+        </select>
+
+      </div>
+
     </section>
 
+
+    <!-- RESULTS -->
     <section class="results-section">
 
-      <div class="truck-list">
-        <app-food-truck-list></app-food-truck-list>
-      </div>
+      <!-- LEFT: Scrollable Food Truck List -->
+      <aside class="truck-list">
 
-      <div class="map-container">
-        <div class="map-placeholder">
-          <div class="map-icon">📍</div>
-          <h2>Food Truck Map</h2>
-          <p>Map will be displayed here</p>
-        </div>
-      </div>
+        <app-food-truck-list
+          [foodTrucks]="foodTrucks()"
+          [isLoading]="isLoading()"
+          [errorMessage]="errorMessage()"
+          [isLoadingMore]="isLoadingMore()"
+          [hasMore]="hasMore()"
+          (truckSelected)="onTruckSelected($event)"
+          (loadMore)="onLoadMore()"
+        >
+        </app-food-truck-list>
+      </aside>
+
+
+      <!-- RIGHT: Fixed Map -->
+      <section class="map-container">
+
+        <app-food-truck-map
+          [foodTrucks]="foodTrucks()"
+          [userLatitude]="userLatitude()"
+          [userLongitude]="userLongitude()"
+          (truckSelected)="onTruckSelected($event)">
+        </app-food-truck-map>
+
+      </section>
 
     </section>
 

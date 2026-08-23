@@ -13,6 +13,14 @@ import * as L from 'leaflet';
 
 import { FoodTruck } from '../../../core/models/food-truck';
 
+delete (L.Icon.Default.prototype as any)._getIconUrl;
+
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: 'marker-icon-2x.png',
+  iconUrl: 'marker-icon.png',
+  shadowUrl: 'marker-shadow.png',
+});
+
 @Component({
   selector: 'app-food-truck-map',
   standalone: true,
@@ -20,6 +28,8 @@ import { FoodTruck } from '../../../core/models/food-truck';
   styleUrl: './food-truck-map.css',
 })
 export class FoodTruckMap implements AfterViewInit, OnChanges {
+
+  
 
   readonly foodTrucks = input<FoodTruck[]>([]);
 
